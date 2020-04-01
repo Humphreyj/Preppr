@@ -1,6 +1,8 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import styled from 'styled-components';
 import graphy from '../../img/graphy.svg';
+import UserContext from '../../contexts/UserContext';
+import PrepItemContext from '../../contexts/PrepItemContext';
 
 const Div = styled.div`
 display: flex; 
@@ -18,15 +20,24 @@ div {
 `
 
 const Dashboard = () => {
+    const {userData} = useContext(UserContext)
+    const {prepItems} =useContext(PrepItemContext)
+    console.log(userData)
+    let tasksCompleted = 0;
+    prepItems.map(item => {
+        if(item.completed) {
+            tasksCompleted ++;
+        }
+    })
     return (
         <Div>
-            <h3>Dashboard for Organization</h3>
-            <h5>Welcome, User!</h5>
+            <h3>Dashboard for {userData.organization}</h3>
+            <h5>Welcome, {userData.username}!</h5>
             <img src={graphy} alt=""/>
 
             <h4>Today's Statistics</h4>
             <div className="stats-today">
-                <p className="tasks-completed">Tasks Completed: 16/20</p>
+                <p className="tasks-completed">Tasks Completed: {tasksCompleted}/{prepItems.length}</p>
 
                 <div className="issues">
                     <h6>Issues</h6>

@@ -11,6 +11,7 @@ import Dashboard from './components/dashboard/Dashboard';
 import Footer from './components/Footer';
 
 import PrepItemContext from './contexts/PrepItemContext';
+import UserContext from './contexts/UserContext';
 
 function App() {
 
@@ -41,14 +42,34 @@ function App() {
     setPrepItems([...prepItems, item])
   }
 
+  const [userData, setUserData] =useState({
+    organization: '',
+    org_type: '',
+    username: '',
+    role: '',
+
+  })
+
+ 
+
  
 
   const removeItem = id => {
-    setPrepItems(prepItems.filter(item => item.id !== id))
+    // setPrepItems(prepItems.filter(item => item.id !== id))
+    setPrepItems(prepItems.map(item => {
+      if(item.id === id) {
+        console.log(item)
+       return {...item,completed : !item.completed}
+      }else {
+        return item;
+      }
+      
+    }))
   }
   return (
     <div className="App">
     <PrepItemContext.Provider value={{prepItems,addItem, removeItem}}>
+      <UserContext.Provider value={{userData, setUserData}}>
       <Navigation />
       <Route path='/' exact component={Home}/>
       <Route path='/login'component={Login}/>
@@ -56,6 +77,7 @@ function App() {
       <Route path = '/master' component={Master} />
       <Route path='/dashboard' component={Dashboard} />
       <Footer />
+      </UserContext.Provider>
     </PrepItemContext.Provider>
 
     </div>

@@ -4,19 +4,26 @@ import { Link } from 'react-router-dom';
 
 const Div = styled.div`
     height: 4em;
+    padding: 2%;
     background-color: dodgerblue;
     display: flex; 
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
+    font-family: 'Viga', sans-serif;
+
+    h1 {
+        letter-spacing: .2em;
+    }
 
     .fas {
-        font-size: .85em;
+        font-size: .88em;
     }
     
     nav {
         a {
             color: white;
             margin: 0 .5em;
+            font-size: 1.2em;
         }
     }
 `

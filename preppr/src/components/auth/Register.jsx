@@ -1,6 +1,7 @@
-import React,{ useState } from 'react';
+import React,{ useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import UserContext from '../../contexts/UserContext';
 const Div = styled.div`
 padding: 2%;
 form {
@@ -25,17 +26,25 @@ form {
 
 const Register = () => {
 
+    const {userData, setUserData} = useContext(UserContext);
+
     const [credentials, updateCredentials] = useState({
         organization: '',
-        type: '',
+        org_type: '',
         role: '',
         username: '',
-        name: '',
         password: ''
     })
 
+    // const handleSubmit = (e) => {
+    //     e.preventDefault()
+    //     setUserData(credentials);
+    //     console.log(credentials)
+    // }
+
     const handleChange = e => {
         updateCredentials({...credentials,[e.target.name]: e.target.value})
+        setUserData({...userData,[e.target.name]: e.target.value})
     }
     return (
         <Div>
@@ -51,7 +60,7 @@ const Register = () => {
 
             <div className="type-box">
                 <p>Business type</p>
-                <select name="role" value={credentials.type} id="">
+                <select name="role" value={credentials.type} onChange={handleChange}>
                     <option value='Catering'>Catering Company</option>
                     <option value='Bar'>Bar</option>
                     <option value='Hotel'>Hotel</option>
@@ -59,17 +68,9 @@ const Register = () => {
                 </select>
             </div>
 
-            <input 
-                name='name'
-                type="text"
-                placeholder='Your name'
-                value={credentials.name}
-                onChange={handleChange}
-                />
-
             <div className="role-box">
                 <p>Your Role</p>
-                <select name="role" value={credentials.role} id="">
+                <select name="role" value={credentials.role} onChange={handleChange}>
                     <option value='Chef'>Chef</option>
                     <option value='Manager'>Manger</option>
                 </select>
@@ -89,7 +90,7 @@ const Register = () => {
                 onChange={handleChange}
                 placeholder='Password'
                 />
-                <Link to='/master'><button>Register</button></Link>
+                <Link to='/master'><button >Register</button></Link>
                 
             </form>
         </Div>

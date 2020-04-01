@@ -3,13 +3,40 @@ import styled from 'styled-components';
 import PrepItemContext from '../../contexts/PrepItemContext';
 
 const Div = styled.div`
+background-color: rgba(247, 239, 239, .8);
+font-family: 'PT Sans Caption', sans-serif;
+form {
+    display: flex;
+    flex-direction: column;
+    input { 
+        width: 80%;
+        height: 1.6em;
+        margin: .6em auto;
+    }
+    div {
+        display: flex;
+        flex-direction: column;
+        
+        select {
+            width: 60%;
+            height: 2em;
+            margin: .2em auto;
+        }
+    }
+    button {
+        width: 40%;
+        margin: .6em auto;
+        font-size: 1.3em;
+        font-family: 'Viga', sans-serif;
+    }
+}
 
 `
 
 const ItemForm = () => {
-    const {prepItems,addItem} = useContext(PrepItemContext)
+    const {addItem} = useContext(PrepItemContext)
     const [newItem,setNewItem] = useState({
-        id: prepItems.length +1,
+        id: Date.now(),
         name: '',
         station: '',
         onHand: '',
@@ -29,6 +56,17 @@ const ItemForm = () => {
         e.preventDefault();
         addItem(newItem)
         console.log(newItem)
+        setNewItem({
+            id: Date.now(),
+            name: '',
+            station: '',
+            onHand: '',
+            onHandUnit: '',
+            par: '',
+            parUnit: '',
+            unit: '',
+            completed: false,
+        })
     }
     return (
         <Div>
