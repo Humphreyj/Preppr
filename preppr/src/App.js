@@ -48,7 +48,7 @@ function App() {
 
   })
 
-  const [taggedIssues,manageTaggedIssues] = useState([]);
+  const [taggedIssues,manageTaggedIssues] = useState([{name: "Onions",text:'None',loggedBy:'Pingus'}]);
 
   const addIssue = (id,newIssue) => {
    prepItems.map(item => {

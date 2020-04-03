@@ -10,12 +10,45 @@ flex-direction: column;
 justify-content: center;
 align-items:center;
 div {
-    width: 80%;
+    width: 95%;
     margin: 1em auto;
+}
+
+.tasks-completed {
+    font-family: 'PT Sans Caption';
+    font-weight: bold;
 }
 .issues {
     border: 1px solid black;
+    
+    
+    h4 {
+        font-family: 'PT Sans Caption', sans-serif;
+        text-decoration: underline;
+
+    }
+
+    .issue {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        font-family: 'Viga', sans-serif;
+
+        button {
+            font-size:.9em;
+            font-weight: bold;
+            height: 1.8em;
+            border-radius: 5px;
+            background-color: rgb(2, 201, 35);
+            text-shadow: 0 0 3px #333;
+            color: white;
+        }
+        
+    
+    }
 }
+
+
 
 `
 
@@ -44,13 +77,14 @@ const Dashboard = () => {
                 <p className="tasks-completed">Tasks Completed: {tasksCompleted}/{prepItems.length}</p>
 
                 <div className="issues">
-                    <h6>Issues</h6>
+                    <h4>Issues</h4>
                     {taggedIssues.map(issue => {
                            return(
                                <div className="issue">
                                     <p>{issue.name}</p>
                                     <p>{issue.text}</p>
-                                    <p>{issue.loggedBy}</p>
+                                    <p>Logged By: {issue.loggedBy}</p>
+                                    <button>Resolve</button>
                                </div>
                             
                            )
