@@ -1,4 +1,4 @@
-import React,{useContext} from 'react';
+import React,{useContext, useEffect} from 'react';
 import styled from 'styled-components';
 import graphy from '../../img/graphy.svg';
 import UserContext from '../../contexts/UserContext';
@@ -21,7 +21,7 @@ div {
 
 const Dashboard = () => {
     const {userData} = useContext(UserContext)
-    const {prepItems} =useContext(PrepItemContext)
+    const {prepItems, taggedIssues} =useContext(PrepItemContext)
     console.log(userData)
     let tasksCompleted = 0;
     prepItems.map(item => {
@@ -29,6 +29,10 @@ const Dashboard = () => {
             tasksCompleted ++;
         }
     })
+
+    useEffect(() => {
+        console.log(taggedIssues)
+    },[])
     return (
         <Div>
             <h3>Dashboard for {userData.organization}</h3>
@@ -41,7 +45,16 @@ const Dashboard = () => {
 
                 <div className="issues">
                     <h6>Issues</h6>
-                   <p>There are currently no issues</p>
+                    {taggedIssues.map(issue => {
+                           return(
+                               <div className="issue">
+                                    <p>{issue.name}</p>
+                                    <p>{issue.text}</p>
+                                    <p>{issue.loggedBy}</p>
+                               </div>
+                            
+                           )
+                       })}
                 </div>
             </div>
             

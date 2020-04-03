@@ -32,6 +32,7 @@ const Master = () => {
                         onHandUnit={item.onHandUnit}
                         station={item.station}
                         completed={item.completed}
+                        issue={item.issue}
                         />
                     )
                 }) : "Your List is Empty!"

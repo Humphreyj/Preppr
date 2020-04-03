@@ -102,12 +102,14 @@ padding: 2%;
 `
 
 const Item = (props) => {
-    const {prepItems,setPrepItem,removeItem} = useContext(PrepItemContext)
+    const {prepItems,setPrepItem,completeItem,toggleIssue,addIssue, taggedIssues} = useContext(PrepItemContext)
 
     const { userData } = useContext(UserContext)
-    const [issue, setIssue] = useState(false)
+    // const [issue, setIssue] = useState(false)
     const [issueMessage, setIssueMessage] = useState({
-        text: ''
+        name: props.name,
+        text: '',
+        loggedBy: userData.username
     })
 
     const changeHandler = e => {
@@ -116,12 +118,14 @@ const Item = (props) => {
 
     const [issueSubmitted, setIssueSubmitted] = useState(false)
     const submitIssue = () => {
-        setIssue(false)
+        toggleIssue(props.id)
+        addIssue(props.id, issueMessage)
         setIssueSubmitted(true)
+        
     }
 
     const resolveIssue = () => {
-        setIssue(false);
+        toggleIssue(props.id)
         setIssueSubmitted(false);
     }
 
@@ -134,7 +138,7 @@ const Item = (props) => {
     return (
         <ItemDiv>
             <div className={props.completed ? "item-content task-complete" : "item-content"}>
-                <div className={!issue ? 'closed': 'modal'}>
+                <div className={props.issue === false ? 'closed': 'modal'}>
                 <h4 className="name">{props.name}</h4>
                 <h6>Submit Issue</h6>
                 <select 
@@ -170,15 +174,15 @@ const Item = (props) => {
 
             <div className="buttons">
                     {props.completed ? <button 
-                    onClick={() => setIssue(!issue)}
+                    onClick={() => toggleIssue(props.id)}
                     className="issue" disabled >Issue</button> : <button 
-                    onClick={() => setIssue(!issue)}
+                    onClick={() => toggleIssue(props.id)}
                     className="issue" >Issue</button>}
                     
                     {issueSubmitted ? <button
-                    onClick={() =>removeItem(props.id)}
+                    onClick={() =>completeItem(props.id)}
                     className="completed" disabled>{completed ? "Undo" : "Complete"}</button> : <button
-                    onClick={() =>removeItem(props.id)}
+                    onClick={() =>completeItem(props.id)}
                     className="completed">{completed ? "Undo" : "Complete"}</button>}
                 </div>
             
