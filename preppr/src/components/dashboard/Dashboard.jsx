@@ -21,7 +21,9 @@ background-color: rgba(247, 239, 239, .8);
     border-radius: 5px;
     max-height: 20em;
     overflow-y: scroll;
-    width: 28em;
+    width: 80%;
+    margin: 0 auto;
+    padding: 2%;
     
     
     h4 {
@@ -32,7 +34,8 @@ background-color: rgba(247, 239, 239, .8);
 
     .issue {
         display: flex;
-        justify-content: space-evenly;
+        flex-direction: column;
+        justify-content: center;
         align-items: center;
         font-family: 'Viga', sans-serif;
         
@@ -85,9 +88,11 @@ const Dashboard = () => {
                     {taggedIssues.map(issue => {
                            return(
                                <div className="issue">
-                                    <p>{issue.name}</p>
-                                    <p>{issue.text}</p>
-                                    <p>Logged By: {issue.loggedBy}</p>
+                                    <div>
+                                        <p>{issue.name}</p>
+                                        <p>{issue.text}</p>
+                                        <p>Logged By: {issue.loggedBy}</p>
+                                    </div>
                                     <button onClick={()=>resolveIssue(issue.id)}>Resolve</button>
                                </div>
                             
