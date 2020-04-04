@@ -1,0 +1,52 @@
+  .sidedrawer {
+    height: 100vh;
+    width: 40vh;
+    background-color: #ddd;
+    transform: translateX(-100%);
+    transition: all 0.3s ease-out;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    z-index: 300;
+
+    
+  }
+
+  .sidedrawer-open {
+    transform: translateX(0);
+    height: 100vh;
+    width: 40vh;
+    background-color: rgb(29, 140, 244);
+    transition: all 0.3s ease-out;
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    top: 0;
+    left: 0;
+    z-index: 300;
+    font-family: 'Viga', sans-serif;
+         
+    }
+
+    .title {
+      letter-spacing: .2em;
+  }
+
+  .fa-list {
+      font-size: .88em;
+  }
+
+  nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  nav a {
+    margin: 1em 0em;
+    font-size: 1.5em;
+    color: #111;
+  }

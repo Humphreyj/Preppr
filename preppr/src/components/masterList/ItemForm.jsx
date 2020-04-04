@@ -5,7 +5,11 @@ import PrepItemContext from '../../contexts/PrepItemContext';
 const Div = styled.div`
 background-color: rgba(247, 239, 239, .8);
 font-family: 'PT Sans Caption', sans-serif;
-form {
+
+.toggle-title {
+    cursor: pointer;
+}
+.form-open {
     display: flex;
     flex-direction: column;
     input { 
@@ -31,6 +35,10 @@ form {
     }
 }
 
+.form-closed {
+    display: none;
+}
+
 `
 
 const ItemForm = () => {
@@ -45,12 +53,15 @@ const ItemForm = () => {
         parUnit: '',
         unit: '',
         completed: false,
+        issue: false
 
     })
 
     const changeHandler = e => {
         setNewItem({...newItem,[e.target.name] : e.target.value})
     }
+
+    const [addingItem,setAddingItem] = useState(false)
 
     const submitHandler = e => {
         e.preventDefault();
@@ -66,12 +77,16 @@ const ItemForm = () => {
             parUnit: '',
             unit: '',
             completed: false,
+            issue: false
         })
     }
     return (
         <Div>
-            <form onSubmit={submitHandler}>
-                <h4>Add a new Item</h4>
+            <h4 
+            onClick={()=>setAddingItem(!addingItem)}
+            className='toggle-title'>{addingItem ? "Cancel": "Add a new Item" }</h4>
+            <form className={addingItem ? 'form-open': 'form-closed'} onSubmit={submitHandler}>
+                
                 <input 
                 name='name'
                 placeholder='Item Name'

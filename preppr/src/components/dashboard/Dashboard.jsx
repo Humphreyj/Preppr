@@ -9,10 +9,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items:center;
-div {
-    width: 95%;
-    margin: 1em auto;
-}
+background-color: rgba(247, 239, 239, .8);
 
 .tasks-completed {
     font-family: 'PT Sans Caption';
@@ -20,6 +17,11 @@ div {
 }
 .issues {
     border: 1px solid black;
+    margin-bottom: 2em;
+    border-radius: 5px;
+    max-height: 20em;
+    overflow-y: scroll;
+    width: 28em;
     
     
     h4 {
@@ -33,6 +35,8 @@ div {
         justify-content: space-evenly;
         align-items: center;
         font-family: 'Viga', sans-serif;
+        
+        
 
         button {
             font-size:.9em;
@@ -54,7 +58,7 @@ div {
 
 const Dashboard = () => {
     const {userData} = useContext(UserContext)
-    const {prepItems, taggedIssues} =useContext(PrepItemContext)
+    const {prepItems, taggedIssues,resolveIssue} =useContext(PrepItemContext)
     console.log(userData)
     let tasksCompleted = 0;
     prepItems.map(item => {
@@ -77,14 +81,14 @@ const Dashboard = () => {
                 <p className="tasks-completed">Tasks Completed: {tasksCompleted}/{prepItems.length}</p>
 
                 <div className="issues">
-                    <h4>Issues</h4>
+                    <h4>Issues - {taggedIssues.length}</h4>
                     {taggedIssues.map(issue => {
                            return(
                                <div className="issue">
                                     <p>{issue.name}</p>
                                     <p>{issue.text}</p>
                                     <p>Logged By: {issue.loggedBy}</p>
-                                    <button>Resolve</button>
+                                    <button onClick={()=>resolveIssue(issue.id)}>Resolve</button>
                                </div>
                             
                            )

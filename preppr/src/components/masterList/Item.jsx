@@ -107,6 +107,7 @@ const Item = (props) => {
     const { userData } = useContext(UserContext)
     // const [issue, setIssue] = useState(false)
     const [issueMessage, setIssueMessage] = useState({
+        id: Math.random().toFixed(5),
         name: props.name,
         text: '',
         loggedBy: userData.username
@@ -121,6 +122,12 @@ const Item = (props) => {
         toggleIssue(props.id)
         addIssue(props.id, issueMessage)
         setIssueSubmitted(true)
+        setIssueMessage({
+            id: '',
+            name: props.name,
+            text: '',
+            loggedBy: userData.username
+        })
         
     }
 

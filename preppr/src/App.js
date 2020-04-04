@@ -8,6 +8,8 @@ import Login from './components/auth/Login';
 import Register from './components/auth/Register';
 import Master from './components/masterList/Master';
 import Dashboard from './components/dashboard/Dashboard';
+import Backdrop from './components/ui/Backdrop';
+import Sidedrawer from './components/sidedrawer/Sidedrawer';
 import Footer from './components/Footer';
 
 import PrepItemContext from './contexts/PrepItemContext';
@@ -37,6 +39,17 @@ function App() {
       station: 'Grill',
       completed: false,
       issue: false
+    },
+    {
+      id: 2,
+      name: 'Ranch Dressing',
+      onHand: 0,
+      onHandUnit: '',
+      par: 4,
+      parUnit: 'Quarts',
+      station: 'Pantry',
+      completed: false,
+      issue: false
     }
   ])
 
@@ -48,7 +61,9 @@ function App() {
 
   })
 
-  const [taggedIssues,manageTaggedIssues] = useState([{name: "Onions",text:'None',loggedBy:'Pingus'}]);
+  
+
+  const [taggedIssues,manageTaggedIssues] = useState([{id: 0,name: "Onions",text:'None',loggedBy:'Pingus'}]);
 
   const addIssue = (id,newIssue) => {
    prepItems.map(item => {
@@ -60,10 +75,10 @@ function App() {
   const addItem = item => {
     setPrepItems([...prepItems, item])
   }
-
+  
 
   const completeItem = id => {
-    // setPrepItems(prepItems.filter(item => item.id !== id))
+    
     setPrepItems(prepItems.map(item => {
       if(item.id === id) {
         console.log(item)
@@ -84,11 +99,31 @@ function App() {
       } 
     }))
   }  
+
+  const resolveIssue = id => {
+    // toggleIssue(id)
+    manageTaggedIssues(taggedIssues.filter(item => item.id !== id))
+  }
+
+  const [drawerOpen,setDrawerOpen] =useState(false)
+
+ 
+    const backdropHandler = () => {
+      console.log(drawerOpen)
+      setDrawerOpen(!drawerOpen)
+    }
+  
+
   return (
-    <div className="App">
-    <PrepItemContext.Provider value={{prepItems,addItem, completeItem,toggleIssue,addIssue, taggedIssues}}>
-      <UserContext.Provider value={{userData, setUserData}}>
+    
+      
+        <div className="App">
+    <PrepItemContext.Provider value={{prepItems,addItem, completeItem,toggleIssue,addIssue, taggedIssues,resolveIssue}}>
+      <UserContext.Provider value={{userData, setUserData,backdropHandler,drawerOpen}}>
+      <Sidedrawer />
       <Navigation />
+      
+      <Backdrop />
       <Route path='/' exact component={Home}/>
       <Route path='/login'component={Login}/>
       <Route path='/register'component={Register}/>
@@ -99,6 +134,8 @@ function App() {
     </PrepItemContext.Provider>
 
     </div>
+    
+    
   );
 }
 
