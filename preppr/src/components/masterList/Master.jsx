@@ -1,9 +1,10 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
-import PrepItemContext from '../../contexts/PrepItemContext';
+import Date from './Time';
 import Item from './Item';
 import ItemForm from './ItemForm';
 import UserContext from '../../contexts/UserContext';
+import PrepItemContext from '../../contexts/PrepItemContext';
 
 const Div = styled.div`
 min-height: 78vh;
@@ -20,7 +21,7 @@ const Master = () => {
     return (
         <Div>
             <h1>{userData.organization}</h1>
-            {
+            <Date />            {
                prepItems && prepItems.length > 0 ? prepItems.map(item => {
                     return (
                         <Item

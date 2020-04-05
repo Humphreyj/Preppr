@@ -1,6 +1,6 @@
 import React,{useContext, useEffect} from 'react';
 import styled from 'styled-components';
-import graphy from '../../img/graphy.svg';
+import Date from '../masterList/Time';
 import UserContext from '../../contexts/UserContext';
 import PrepItemContext from '../../contexts/PrepItemContext';
 
@@ -12,15 +12,18 @@ align-items:center;
 background-color: rgba(247, 239, 239, .8);
 height: 78vh;
 
-.tasks-completed {
-    font-family: 'PT Sans Caption';
-    font-weight: bold;
-}
+
 .tasks {
     border: 1px solid black;
     border-radius: 8px;
     width: 19em;
+    font-family: 'Viga', sans-serif;
     padding:2% 0;
+
+    .tasks-completed {
+        font-family: 'PT Sans Caption';
+        font-weight: bold;
+    }
     .completed-task {
         display: flex;
         flex-direction: column;
@@ -39,6 +42,14 @@ height: 78vh;
     }
     button {
         margin-top: 1em;
+        font-size:.9em;
+        font-weight: bold;
+        height: 1.8em;
+        border-radius: 5px;
+        background-color: rgb(2, 201, 35);
+        text-shadow: 0 0 3px #333;
+        color: white;
+        margin-top: .5em
     }
 }
 .issues {
@@ -118,7 +129,7 @@ const Dashboard = () => {
             <h4>{userData.role} at {userData.organization}</h4>
             
 
-            <h4>Today's Statistics</h4>
+            <h4>Stats for <Date/></h4>
             <div className="stats-today">
                 
                 <div className="tasks">
@@ -136,7 +147,7 @@ const Dashboard = () => {
                             )
                         }
                     })}
-                    <button onClick={removeCompletedItem}>Clear</button>
+                    <button className='clear' onClick={removeCompletedItem}>Clear</button>
                 </div>
 
                 <div className="issues">

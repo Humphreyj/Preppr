@@ -13,15 +13,27 @@ const Sidedrawer = () => {
             <div className={drawerOpen ? "sidedrawer-open" : "sidedrawer"}>
                 <h1 className='side-title'>PR<i className="fas fa-list"></i>PR</h1>
                 <nav>
-                    <Link 
-                    onClick={backdropHandler}
-                    to='/'>Home</Link>
-                    <Link 
-                    onClick={backdropHandler}
-                    to='/dashboard'>Dashboard</Link>
-                    <Link 
-                    onClick={backdropHandler}
-                    to='/master'>Master List</Link>
+                    <div>
+                        <i className="fas icon fa-home"></i>
+                        <Link 
+                        onClick={backdropHandler}
+                        to='/'>Home</Link>
+                    </div>
+                    <div>
+                    <i className="fas fa-chart-pie icon"></i>
+                        <Link 
+                        onClick={backdropHandler}
+                        to='/dashboard'>Dashboard</Link>
+                    </div>
+                    <div>
+                        <i className="fas icon fa-clipboard-list"></i>
+                        <Link 
+                        onClick={backdropHandler}
+                        to='/master'>Master List</Link>
+                    </div>
+                   
+                    
+                    
                 </nav>
             </div>
             
