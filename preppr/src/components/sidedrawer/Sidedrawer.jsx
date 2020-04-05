@@ -11,7 +11,7 @@ const Sidedrawer = () => {
         
             
             <div className={drawerOpen ? "sidedrawer-open" : "sidedrawer"}>
-                <h1 className='title'>PR<i className="fas fa-list"></i>PR</h1>
+                <h1 className='side-title'>PR<i className="fas fa-list"></i>PR</h1>
                 <nav>
                     <Link 
                     onClick={backdropHandler}

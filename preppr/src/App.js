@@ -26,7 +26,7 @@ function App() {
       par: 2,
       parUnit: 'Quarts',
       station: 'Grill',
-      completed: false,
+      completed: true,
       issue: false
     },
     {
@@ -54,10 +54,10 @@ function App() {
   ])
 
   const [userData, setUserData] =useState({
-    organization: '',
-    org_type: '',
-    username: '',
-    role: '',
+    organization: "Dottoe's",
+    org_type: 'Bar',
+    username: 'Dottoe',
+    role: 'Chef',
 
   })
 
@@ -74,6 +74,13 @@ function App() {
   }
   const addItem = item => {
     setPrepItems([...prepItems, item])
+  }
+  const removeCompletedItem = () => {
+    prepItems.map(item => {
+      if(item.completed) {
+        setPrepItems(prepItems.filter(item => !item.completed))
+      }
+    })
   }
   
 
@@ -118,7 +125,7 @@ function App() {
     
       
         <div className="App">
-    <PrepItemContext.Provider value={{prepItems,addItem, completeItem,toggleIssue,addIssue, taggedIssues,resolveIssue}}>
+    <PrepItemContext.Provider value={{prepItems,addItem, completeItem,toggleIssue,addIssue, taggedIssues,resolveIssue,removeCompletedItem}}>
       <UserContext.Provider value={{userData, setUserData,backdropHandler,drawerOpen}}>
       <Sidedrawer />
       <Navigation />

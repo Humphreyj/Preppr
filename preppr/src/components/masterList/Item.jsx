@@ -21,8 +21,10 @@ padding: 2%;
         font-family: 'PT Sans Caption', sans-serif;
         display: flex;
         justify-content: center;
+        align-items: center;
         .station {
             margin-left: 1em;
+            font-size: 1em;
         }
     }
     
@@ -32,7 +34,7 @@ padding: 2%;
         text-shadow: 1px 1px 1px #111;
     }
     .quantity {
-        width: 60%;
+        width: 80%;
         margin: 0 auto;
         display: flex;
         justify-content: space-between;
@@ -110,7 +112,8 @@ const Item = (props) => {
         id: Math.random().toFixed(5),
         name: props.name,
         text: '',
-        loggedBy: userData.username
+        loggedBy: userData.username,
+        itemId: props.id
     })
 
     const changeHandler = e => {
@@ -119,15 +122,15 @@ const Item = (props) => {
 
     const [issueSubmitted, setIssueSubmitted] = useState(false)
     const submitIssue = () => {
-        toggleIssue(props.id)
+        // toggleIssue(props.id)
         addIssue(props.id, issueMessage)
         setIssueSubmitted(true)
-        setIssueMessage({
-            id: '',
-            name: props.name,
-            text: '',
-            loggedBy: userData.username
-        })
+        // setIssueMessage({
+        //     id: '',
+        //     name: props.name,
+        //     text: '',
+        //     loggedBy: userData.username
+        // })
         
     }
 
@@ -145,7 +148,7 @@ const Item = (props) => {
     return (
         <ItemDiv>
             <div className={props.completed ? "item-content task-complete" : "item-content"}>
-                <div className={props.issue === false ? 'closed': 'modal'}>
+                <div className={!props.issue || issueSubmitted ? 'closed': 'modal'}>
                 <h4 className="name">{props.name}</h4>
                 <h6>Submit Issue</h6>
                 <select 
@@ -170,7 +173,7 @@ const Item = (props) => {
                     <h4 className="name">{props.name}</h4>
                     <h6 className='station'> - {props.station}</h6>
                 </div>
-    {issueSubmitted ? <h4 className ='issue-text'>ISSUE SUBMITTED BY {userData.username} - {issueMessage.text}</h4> : '' }
+    {issueSubmitted || props.issue ? <h4 className ='issue-text'>ISSUE SUBMITTED BY {userData.username} - {issueMessage.text}</h4> : '' }
     {props.completed ? <h4 className='completed-by'>Completed by: {userData.username}</h4> : ''}
                 <div className="quantity">
                     <p className="on-hand">On Hand: {props.onHand} {props.onHandUnit} </p>

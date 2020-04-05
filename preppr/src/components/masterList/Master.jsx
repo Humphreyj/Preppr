@@ -6,7 +6,7 @@ import ItemForm from './ItemForm';
 import UserContext from '../../contexts/UserContext';
 
 const Div = styled.div`
-
+min-height: 78vh;
 background-color: rgba(247, 239, 239, .8);
 margin-top: -1.4em;
 font-family: 'PT Sans Caption', sans-serif;

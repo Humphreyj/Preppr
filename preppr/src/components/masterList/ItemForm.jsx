@@ -6,12 +6,16 @@ const Div = styled.div`
 background-color: rgba(247, 239, 239, .8);
 font-family: 'PT Sans Caption', sans-serif;
 
+
 .toggle-title {
     cursor: pointer;
 }
 .form-open {
     display: flex;
     flex-direction: column;
+    opacity: 1;
+    transition: visibility 0s, opacity .5s linear;
+    visibility: visible;
     input { 
         width: 80%;
         height: 1.6em;
@@ -36,7 +40,8 @@ font-family: 'PT Sans Caption', sans-serif;
 }
 
 .form-closed {
-    display: none;
+    visibility: hidden;
+    opacity: 0;
 }
 
 `
