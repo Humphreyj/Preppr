@@ -66,9 +66,9 @@ const Time = () => {
 
     return (
         <Div>
-            <p>{currentDate.dom} </p>
-            <p>-</p>
             <p>{currentDate.month} </p>
+            <p>-</p>
+            <p>{currentDate.dom} </p>
             <p>-</p>
             <p>{currentDate.year}</p>
         </Div>
