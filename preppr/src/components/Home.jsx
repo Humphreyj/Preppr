@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import demo from '../img/preppr.png'
 
 const Div = styled.div`
 .hero {
@@ -9,7 +10,12 @@ const Div = styled.div`
     flex-direction: column;
     align-items: center;
     width: 80%;
-    margin: 0 auto;
+    margin: 1em auto;
+     img {
+         width: 80%;
+         height: 80%;
+         border-radius: 5px;
+     }
 }
 .home-info {
     display: flex;
@@ -61,7 +67,7 @@ const Home = () => {
                 <h4 className="tagline">A collaborative Prep List tool.</h4>
             </div>
             <div>
-                <h1>DEMO IMAGE HERE</h1>
+                <img src={demo} alt=""/>
             </div>
         </div>
         {/* hero section */}

@@ -1,6 +1,7 @@
 import React,{useContext, useEffect} from 'react';
 import styled from 'styled-components';
 import Date from '../masterList/Time';
+import Staff from './Staff';
 import UserContext from '../../contexts/UserContext';
 import PrepItemContext from '../../contexts/PrepItemContext';
 
@@ -10,7 +11,8 @@ flex-direction: column;
 justify-content: center;
 align-items:center;
 background-color: rgba(247, 239, 239, .8);
-height: 78vh;
+height: 100%;
+
 
 
 .tasks {
@@ -131,6 +133,8 @@ const Dashboard = () => {
 
             <h4>Stats for <Date/></h4>
             <div className="stats-today">
+
+                <Staff />
                 
                 <div className="tasks">
                 <p className="tasks-completed">Tasks Completed: {tasksCompleted}/{prepItems.length}</p>

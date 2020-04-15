@@ -2,7 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Div = styled.div`
-    height: 4em;
+    
+    height: 2em;
     background-color: dodgerblue;
 `
 

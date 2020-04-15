@@ -61,6 +61,41 @@ function App() {
 
   })
 
+  const [staff, setStaff] = useState([
+    {
+      id: 0,
+      name: 'Dottoe',
+      role: 'Chef',
+      payType: 'Salary',
+      shift: 'AM',
+      trainedOn: ['Pantry', 'Fry', 'Griddle']
+    },
+    {
+      id: 1,
+      name: 'A-Aron',
+      role: 'Cook',
+      payType: 'Hourly',
+      shift:'PM',
+      trainedOn: ['Pantry', 'Fry', 'Griddle','Dish']
+    },
+    {
+      id: 2,
+      name: 'D-Nice',
+      role: 'Cook',
+      payType: 'Hourly',
+      shift: "AM",
+      trainedOn: ['Pantry']
+    },
+    {
+      id: 3,
+      name: 'J-Qwelyn',
+      role: 'Dishwasher',
+      payType: 'Hourly',
+      shift: 'PM',
+      trainedOn: ['Dish']
+    }
+  ])
+
   
 
   const [taggedIssues,manageTaggedIssues] = useState([{id: 0,name: "Onions",text:'None',loggedBy:'Pingus'}]);
@@ -68,7 +103,7 @@ function App() {
   const addIssue = (id,newIssue) => {
    prepItems.map(item => {
      if(id === item.id) {
-       manageTaggedIssues([...taggedIssues, newIssue])
+      return manageTaggedIssues([...taggedIssues, newIssue])
      }
    })
   }
@@ -78,7 +113,7 @@ function App() {
   const removeCompletedItem = () => {
     prepItems.map(item => {
       if(item.completed) {
-        setPrepItems(prepItems.filter(item => !item.completed))
+      return  setPrepItems(prepItems.filter(item => !item.completed))
       }
     })
   }
@@ -126,7 +161,7 @@ function App() {
       
         <div className="App">
     <PrepItemContext.Provider value={{prepItems,addItem, completeItem,toggleIssue,addIssue, taggedIssues,resolveIssue,removeCompletedItem}}>
-      <UserContext.Provider value={{userData, setUserData,backdropHandler,drawerOpen}}>
+      <UserContext.Provider value={{userData, setUserData,backdropHandler,drawerOpen, staff}}>
       <Sidedrawer />
       <Navigation />
       
