@@ -17,7 +17,7 @@ font-family: 'Viga', sans-serif;
         letter-spacing: .2em;
     }
      img {
-         width: 28em;
+         width: 22em;
          
          border-radius: 5px;
      }
