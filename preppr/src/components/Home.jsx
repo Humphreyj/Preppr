@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import demo from '../img/preppr.png'
 
 const Div = styled.div`
+font-family: 'Viga', sans-serif;
 .hero {
     display: flex;
     justify-content: space-between;
@@ -11,9 +12,13 @@ const Div = styled.div`
     align-items: center;
     width: 80%;
     margin: 1em auto;
+    .title {
+        font-size: 2.2em;
+        letter-spacing: .2em;
+    }
      img {
-         width: 80%;
-         height: 80%;
+         width: 28em;
+         
          border-radius: 5px;
      }
 }
@@ -24,6 +29,8 @@ const Div = styled.div`
     align-items: center;
     width: 80%;
     margin: 0 auto;
+    font-weight: bold;
+    font-size: 1.2em;
 }
 .buttons {
     button {
@@ -63,7 +70,7 @@ const Home = () => {
         <Div>
         <div className="hero">
             <div>
-                <h1 className="title">Preppr</h1>
+                <h1 className="title">Prepr</h1>
                 <h4 className="tagline">A collaborative Prep List tool.</h4>
             </div>
             <div>

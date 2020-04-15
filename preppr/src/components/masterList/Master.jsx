@@ -34,6 +34,7 @@ const Master = () => {
                         station={item.station}
                         completed={item.completed}
                         issue={item.issue}
+                        issueMessage={item.issueMessage}
                         />
                     )
                 }) : "Your List is Empty!"

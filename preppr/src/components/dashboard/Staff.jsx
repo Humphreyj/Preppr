@@ -1,5 +1,6 @@
 import React,{useContext} from 'react'
 import UserContext from '../../contexts/UserContext';
+import StaffMember from './StaffMember';
 import {
     Accordion,
     AccordionItem,
@@ -9,6 +10,7 @@ import {
 } from 'react-accessible-accordion';
 // Demo styles, see 'Styles' section below for some notes on use.
 import 'react-accessible-accordion/dist/fancy-example.css';
+import Item from '../masterList/Item';
 export default function Example() {
 
     const {staff} =useContext(UserContext)
@@ -26,7 +28,11 @@ export default function Example() {
                         {staff.map(item => {
                             if(item.shift === 'AM') {
                                 return (
-                                    <p>{item.name}</p>
+                                    <StaffMember 
+                                    name={item.name}
+                                    role={item.role}
+                                    trainedOn={item.trainedOn}
+                                    />
                                 )
                             }
                         })}
@@ -41,13 +47,17 @@ export default function Example() {
                 </AccordionItemHeading>
                 <AccordionItemPanel>
                 <div>
-                        {staff.map(item => {
-                            if(item.shift === 'PM') {
-                                return (
-                                    <p>{item.name}</p>
-                                )
-                            }
-                        })}
+                    {staff.map(item => {
+                                if(item.shift === 'PM') {
+                                    return (
+                                        <StaffMember 
+                                        name={item.name}
+                                        role={item.role}
+                                        trainedOn={item.trainedOn}
+                                        />
+                                    )
+                                }
+                            })}
                     </div>
                 </AccordionItemPanel>
             </AccordionItem>

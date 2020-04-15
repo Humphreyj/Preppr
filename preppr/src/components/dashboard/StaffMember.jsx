@@ -3,13 +3,14 @@ import styled from 'styled-components';
 
 const Div = styled.div `
 display: flex;
-justify-content: space-evenly;
+justify-content: center;
 align-items: center;
 flex-direction: column;
 border: 1px solid black;
 border-radius: 5px;
-width: 19em;
-margin: 1em auto;
+width: 15em;
+padding: 2%;
+margin-top: 1em;
 
 div {
     display: flex;

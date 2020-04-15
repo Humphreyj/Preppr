@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { Route } from 'react-router-dom';
 import Navigation from './components/Navigation';
@@ -27,7 +26,8 @@ function App() {
       parUnit: 'Quarts',
       station: 'Grill',
       completed: true,
-      issue: false
+      issue: false,
+      issueMessage: {}
     },
     {
       id: 1,
@@ -38,18 +38,20 @@ function App() {
       parUnit: 'Each',
       station: 'Grill',
       completed: false,
-      issue: false
+      issue: false,
+      issueMessage: {}
     },
     {
       id: 2,
       name: 'Ranch Dressing',
-      onHand: 0,
-      onHandUnit: '',
+      onHand: 1,
+      onHandUnit: 'Cup',
       par: 4,
       parUnit: 'Quarts',
       station: 'Pantry',
       completed: false,
-      issue: false
+      issue: false,
+      issueMessage: {}
     }
   ])
 
@@ -131,6 +133,16 @@ function App() {
     }))
   }
 
+  const setItemIssueMessage = (id, message) => {
+    setPrepItems(prepItems.map(item => {
+      if(item.id === id) {
+        return{...item,issueMessage: message}
+      } else {
+        return item
+      }
+    }))
+  }
+
   const toggleIssue = id => {
     setPrepItems(prepItems.map(item => {
       if(item.id === id) {
@@ -160,7 +172,7 @@ function App() {
     
       
         <div className="App">
-    <PrepItemContext.Provider value={{prepItems,addItem, completeItem,toggleIssue,addIssue, taggedIssues,resolveIssue,removeCompletedItem}}>
+    <PrepItemContext.Provider value={{prepItems,addItem, completeItem,toggleIssue,addIssue, taggedIssues,resolveIssue,removeCompletedItem,setItemIssueMessage}}>
       <UserContext.Provider value={{userData, setUserData,backdropHandler,drawerOpen, staff}}>
       <Sidedrawer />
       <Navigation />
